@@ -9,7 +9,14 @@ export const useLocalStorage = (key, initialValue) => {
 		return currentItem ? JSON.parse(currentItem) : initialValue;
 	});
 
+	const setValue = value => {
+		// Allow value to be a function so we have same API as state
+		const valueSaved = value instanceof Function ? value(storedValue) : value;
+		// save the value to state
+		setStoredValue(valueSaved)
+		// save the value stringified to localStorage
+		window.localStorage.setItem(key, JSON.stringify(valueSaved))
+	}
 
-	return [storedValue, setStoredValue]
-
+	return [storedValue, setValue];
 }
