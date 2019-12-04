@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDarkMode } from "./hooks/useDarkMode";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
 
-  const darkFunction = () => {
-    darkMode
-      ? document.querySelector("body").classList.remove("dark-mode")
-      : document.querySelector("body").classList.add("dark-mode");
-  };
+  darkMode
+    ? document.querySelector("body").classList.add("dark-mode")
+    : document.querySelector("body").classList.remove("dark-mode");
 
   const toggleMode = e => {
     e.preventDefault();
     setDarkMode(!darkMode);
-    darkFunction();
   };
 
   return (
