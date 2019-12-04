@@ -9,6 +9,9 @@ export const useLocalStorage = (key, initialValue) => {
 		return currentItem ? JSON.parse(currentItem) : initialValue;
 	});
 
+
+	// Return a wrapped version of useState's setter function that ...
+	// ... persists the new value to localStorage.
 	const setValue = value => {
 		// Allow value to be a function so we have same API as state
 		const valueSaved = value instanceof Function ? value(storedValue) : value;
